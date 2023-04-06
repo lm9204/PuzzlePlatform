@@ -52,6 +52,9 @@ private:
 	void HostServer();
 
 	UFUNCTION()
+	void JoinServer();
+
+	UFUNCTION()
 	void OpenJoinMenu();
 
 	UFUNCTION()

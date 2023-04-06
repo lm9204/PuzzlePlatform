@@ -4,7 +4,6 @@
 #include "PuzzlePlatformsGameInstance.h"
 
 #include "InterchangeProjectSettings.h"
-#include "PlatformTrigger.h"
 #include "Blueprint/UserWidget.h"
 #include "MenuSystem/MainMenu.h"
 
@@ -51,8 +50,10 @@ void UPuzzlePlatformsGameInstance::Host()
 
 void UPuzzlePlatformsGameInstance::Join(const FString& Address)
 {
-	GEngine->AddOnScreenDebugMessage(0, 5, FColor::Blue, FString::Printf(TEXT("Connecting to %s"), *Address));
-
+	if(Menu != nullptr)
+	{
+		Menu->Teardown();
+	}
 	APlayerController* PlayerController = GetFirstLocalPlayerController();
 
 	PlayerController->ClientTravel(Address, TRAVEL_Absolute);
